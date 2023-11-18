@@ -1,0 +1,43 @@
+<%- include('./layouts/header.ejs') %>
+
+<div id="app" class="bg-gray-100 py-4 min-h-[80vh]">
+    <div class="container m-auto py-4">
+        <div class="flex gap-3">
+            <div class="w-1/4">
+                <div class=" bg-white rounded-md border p-4">
+                    <h2 class="text-lg font-semibold">Danh mục sản phẩm</h2>
+                    <div class=" flex flex-col gap-2 py-4">
+                        <% for(let cate of listCategory){ %>
+                            <a class=" block hover:text-green-500" href="/product?idCategory=<%= cate.id %>"><%= cate.name_category %></a>
+                        <% }%>
+                    </div>
+                </div>
+            </div>
+            <div class="w-3/4">
+                <div class=" bg-white rounded-md border">
+                    <h2 class="text-lg font-semibold pt-4 px-6 border-b pb-2">
+                        <%= name_category || '' %>
+                    </h2>
+                    <div class=" grid grid-cols-4 gap-1 py-2">
+                        <% for(let p of listProduct){ %>
+                          <a href="/product/<%= p.isbn %>" class=" hover:shadow-xl px-4 py-2" >
+                            <div class=" flex flex-col gap-2  h-full">
+                              <div class="w-2/3 m-auto flex-1">
+                                <img class="w-full" src="/uploads/<%= p.thumb %>" alt="">
+                              </div>
+                              <p class="flex-none  whitespace-normal break-words text-center"><%= p.name_product %></p>
+                            </div>
+                          </a>
+                        <%}%>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

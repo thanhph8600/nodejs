@@ -1,0 +1,46 @@
+
+    <%- include('../aside.ejs')%>
+    <header>
+        <div class=" bg-white py-4 px-10">
+            <h2 class=" uppercase text-xl font-semibold">Product</h2>
+        </div>
+    </header>
+            <!-- Page Content -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-4">
+                <!-- Your content goes here -->
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Name</th>
+                                <th scope="col" class="px-6 py-3">Price</th>
+                                <th scope="col" class="px-6 py-3"></th>
+                                <th scope="col" class="px-6 py-3"><a href="/admin/product/create" class="text-white bg-green-400 px-4 py-2 rounded-md hover:bg-green-500">Create</a></th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        <% for (const p of listProduct) { %>
+                            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                <th scope="row" class="flex gap-2 items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-[60px]" src="/uploads/<%=p.thumb%>">
+                                    <p><%=p.name_product%></p>
+                                </th>
+                                <td  scope="col" class="px-6 py-3"><%=p.price%></td>
+                                <td scope="col" class="px-6 py-3"><a href="/admin/product/<%=p.isbn%>"><i class="fa fa-wrench" aria-hidden="true"></i></a></td>
+                                <td scope="col" class="px-6 py-3"><form action="/admin/product/delete" method="post">
+                                    <input type="hidden" name="id" value="<%= p.id %>">
+                                    <input type="hidden" name="thumb" value="<%= p.thumb %>">
+                                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </form></td>
+                              </tr>
+                        <%}%>
+                      
+                    </tbody>
+                  </table>
+            </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
