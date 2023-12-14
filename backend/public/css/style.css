@@ -1,0 +1,16 @@
+h1{
+    color: red;
+    position: fixed;
+}
+
+.popup > div {
+    animation: loadss 0.5 ease-in-out;
+}
+@keyframes loadss {
+    0% {
+        top: 0;
+    }
+    100%{
+        top: 25%;
+    }
+}

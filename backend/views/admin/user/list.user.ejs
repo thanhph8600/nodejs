@@ -1,0 +1,96 @@
+
+
+    <div class="relative overflow-x-auto py-6">
+        <% if (successMessage.length != 0) { %>
+            <div class="px-6 py-4 border-green-500 bg-green-400 text-white">
+                <%= successMessage %>
+            </div>
+        <% } %>
+        <% if (errorMessage.length != 0) { %>
+            <div class="px-6 py-4 border-red-500 bg-red-400 text-white">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        User name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        User email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        User phone
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        User role
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <a class=" px-5 py-2 rounded-md border hover:bg-gray-300" href="/admin/user/create">ADD User</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let item of listUser){ %>
+                    
+                <tr class="bg-white border-b <%= (item.banner) ? 'bg-gray-800' :'bg-green-800'%> dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <div class="flex gap-1 items-center">
+                            <img class="w-10 shadow-lg border" src="/uploads/<%= item.image %>" alt="">
+                            <%= item.name %>
+                        </div>
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= item.email %>
+                    </td>
+                    <td class="px-6 py-4">
+                        <%= item.phone %>
+                    </td>
+                    <td class="px-6 py-4">
+                        <%= item.role %>
+                    </td>
+                    <td class="px-6 py-4">
+                        <form action="/admin/user/update" method="get">
+                            <input type="hidden" name="id" value="<%= item._id%>">
+                            <button><i class="fa fa-wrench hover:text-green-600" aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                    <td class="px-6 py-4">
+                        <i data="<%= item._id%>" class="fa fa-ban hover:text-red-600 cursor-pointer btn-ban-user" aria-hidden="true"></i>
+
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div class="alert popup hidden">
+        <div class="fixed top-1/4 left-1/2 z-10 -translate-x-1/2 -translate-y-3/4">
+            <div class=" py-2 px-10 bg-gray-300 border shadow-lg rounded-md">
+                <form action="/admin/user/ban-user" method="post" class="flex flex-col gap-2">
+                    <label for="">Lý do khóa</label>
+                    <input type="text" name="isBanned" id="">
+                    <div class="flex justify-between">
+                        <input type="hidden" name="idUser" value="656c3197dfc24d0ab0d101cb">
+                        <button class="px-2 py-1 rounded-md border bg-red-400 ">Đồng ý</button>
+                        <p class="px-2 py-1 rounded-md border close-alert bg-white">Hủy</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on('click','.btn-ban-user',function(){
+            let idUser = $(this).attr('data')
+            $('input[name="idUser"]').val(idUser)
+            $('.alert').removeClass('hidden')
+        })
+        $(document).on('click','.close-alert',function(){
+            $('.alert').addClass('hidden')
+            $('input[name="idUser"]').val('')
+            $('input[name="isBanned"]').val('')
+        })
+    </script>

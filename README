@@ -1,0 +1,68 @@
+
+<span style="font-size: 20px;font-weight: bold;">I. Phân Tích Yêu Cầu</span>
+**1/Xác Định Ngữ Cảnh:**
+Website đánh giá sách.
+Người dùng có thể đăng ký thành viên trên
+trang web của bạn và sau đó đăng nhập bằng tên người dùng và mật khẩu của họ.
+Khi họ đăng nhập, họ sẽ có thể tìm kiếm sách, để lại đánh giá cho từng cuốn sách và
+xem các đánh giá được thực hiện bởi những người khác. Cuối cùng, người dùng có
+thể truy vấn để biết chi tiết về sách và đánh giá sách theo chương trình thông qua
+trang web API của bạn.
+
+Yêu Cầu Chức Năng:
+Đăng ký, đăng nhập và đăng xuất người dùng.
+Tìm kiếm: Khi người dùng đã đăng nhập, họ sẽ được đưa đến một trang nơi họ có
+thể tìm kiếm một cuốn sách
+Trang sách: Khi người dùng nhấp vào một cuốn sách từ kết quả của trang tìm kiếm,
+họ sẽ được đưa đến một trang sách, với các chi tiết về cuốn sách và mọi đánh giá mà người dùng đã để lại cho cuốn sách trên
+trang web của bạn.
+Đánh giá: Trên trang sách, người dùng sẽ có thể gửi đánh giá: bao gồm xếp hạng
+theo thang điểm từ 1 đến 5, Nội dung ý kiến của họ về một cuốn sách. 
+
+<span style="font-size: 20px;font-weight: bold;">II. Thiết Kế RESTful API</span>
+**Xác Định Tài Nguyên:**
+
+/api/user: Quản lý thông tin người dùng.
+/api/category: Quản lý thông tin thể loại sách.
+/api/product: Quản lý thông tin sách.
+/api/comment: Quản lý thông tin bình luận.
+
+**Phương Thức HTTP:**
+
+GET: Lấy thông tin.
+POST: Tạo mới thông tin.
+PUT/PATCH: Cập nhật thông tin.
+DELETE: Xóa thông tin.
+
+**Endpoints Chi Tiết:**
+
+/api/user
+
+GET /api/user: Lấy danh sách người dùng.
+GET /api/user/{id}: Lấy thông tin người dùng theo ID.
+GET /api/user/token: Lấy thông tin người dùng theo token.
+POST /api/user/login: Đăng nhập.
+POST /api/user/register: Đăng ký.
+POST /api/user/update: Cập nhật thông tin người dùng.
+
+/api/category
+
+GET /api/category: Lấy danh sách thể loại sách.
+
+
+/api/product
+
+GET /api/product: Lấy danh sách sản phẩm.
+GET /api/product/{isbn}: Lấy thông tin sản phẩm theo isbn.
+GET /api/product/{query}: Lấy thông tin sản phẩm theo truy vấn của người dùng.
+POST /api/product/update-avg: Cập nhật đánh giá của sản phẩm.
+
+/api/comment
+
+GET /api/comment: Lấy danh sách bình luận .
+GET /api/comment/{id-product}: Lấy danh sách bình luận theo id sản phẩm.
+POST /api/comment/create: Tạo 1 bình luận mới
+
+<span style="font-size: 20px;font-weight: bold;">III. Bảo Mật</span>
+**Xác Thực:**
+Sử dụng JWT (JSON Web Tokens) để quản lý quyền truy cập của người dùng.

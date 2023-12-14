@@ -1,0 +1,20 @@
+<div class="popup hidden">
+    <div class=" fixed top-1/4 left-1/2 z-10 -translate-x-1/2 -translate-y-3/4">
+        <div class=" py-6 px-10 bg-gray-300 border shadow-lg rounded-md">
+            <form action="/admin/<%= table%>/delete" method="post" class="flex flex-col gap-2">
+                <label for="">Bạn có muốn xóa</label>
+                <p class="name text-lg font-bold"></p>
+                <div class="flex justify-between ">
+                    <input type="hidden" name="id" value="">
+                    <button class="px-2 py-1 rounded-md border bg-red-400 ">Đồng ý</button>
+                    <p class="px-2 py-1 rounded-md border close-popup bg-white cursor-pointer">Hủy</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).on('click','.close-popup',function() {
+        $('.popup').addClass('hidden')
+    })
+</script>

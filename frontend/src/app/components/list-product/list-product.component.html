@@ -1,0 +1,39 @@
+<main class="bg-gray-100 py-4">
+    <div class="pb-4 container m-auto">
+        <a href="/">Trang Chủ </a>
+        <span class="uppercase"> / {{title}}</span>
+    </div>
+    <div class="container m-auto rounded-md ">
+        <div class="flex gap-4">
+            <div class="w-1/4">
+                <div class="bg-white rounded-md px-2 py-6">
+                    <h2 class="font-bold text-base border-b px-2 pb-1 mb-2">Danh Mục Sản Phẩm</h2>
+                    <div class="flex flex-col gap-1 px-2 py-1" *ngFor="let item of categories">
+                        <a href="list-product?query=category&&id={{item._id}}">{{item.name}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-3/4">
+                <div class="bg-white rounded-md px-2 py-6">
+                    <h2 class="font-bold text-base border-b px-2 pb-1 mb-2 uppercase"> {{title}}</h2>
+                    <div class="grid grid-cols-4 px-4 py-2 gap-2">
+                        <a *ngFor="let item of products" href="detai-product?isbn={{item.isbn}}" class="hover:shadow-lg hover:border">
+                            <div class="px-4 py-2 h-full">
+                                <div class="bg-white rounded-md py-2 px-4 flex flex-col h-full">
+                                    <div class="flex-none">
+                                        <img class="w-4/5 m-auto" src="http://localhost:3000/uploads/{{item.image}}" alt="">
+                                    </div>
+                                    <p class="grow"> {{item.name}} </p>
+                                    <p class="flex-none text-red-500 font-bold">
+                                            {{item.price*(100-item.sale)}} đ <span class="px-2 rounded text-white bg-red-600">{{item.sale}}%</span>
+                                    </p>
+                                    <p class="line-through text-gray-300 flex-none">{{item.price}} đ</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

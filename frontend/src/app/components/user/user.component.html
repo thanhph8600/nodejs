@@ -1,0 +1,72 @@
+<main class="bg-gray-100 py-4 min-h-screen">
+    <div class="pb-4 container m-auto">
+        <section class="container m-auto py-4">
+            <div class="bg-white rounded-md px-4 py-6">
+                <div class="flex gap-3">
+                    <div class="w-1/3 p-4">
+                        <div class="border rounded-md shadow-sm p-4">
+                            <div class="flex gap-3 items-center pb-2 border-b ">
+                                <img class="w-20 h-20 flex items-center justify-center rounded-full border" src="http://localhost:3000/uploads/{{user.image}}" alt="">
+                                <h2 class=" font-bold text-xl">{{user.name}}</h2>
+                            </div>
+                            <div class="py-4 px-4">
+                                <div class="flex flex-col gap-4">
+                                    <a href="" class=" hover:text-green-500">Thông tin</a>
+                                    <a href="" class=" hover:text-green-500">Đổi mật khẩu</a>
+                                    <div *ngIf="admin">
+                                        <button (click)="loginAdmin()" class="text-left hover:text-green-500">Quản lý admin</button>
+                                    </div>
+                                    <button (click)="logOut()" class="text-left hover:text-green-500">Đăng xuất</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-2/3 p-4">
+                        <div class=" border rounded-md shadow-sm p-4">
+                            <h2 class="font-bold text-xl pb-2 border-b">Thông tin tài khoản</h2>
+                            <div *ngIf="err">
+                                <div class="bg-red-500 p-4 text-white rounded-md">{{err}}</div>
+                            </div>
+                            <div *ngIf="success">
+                                <div class="bg-green-500 p-4 text-white rounded-md">{{success}}</div>
+                            </div>
+                            <div class="py-4">
+                                <form action="" method="post" #update="ngForm" (ngSubmit)="onSubmit(update)">
+                                    <div class="flex gap-5 py-2">
+                                        <div class="w-1/2">
+                                            <label for="">Name</label>
+                                            <input [(ngModel)]="user.name"  class="block border rounded-md w-full p-2" type="text" name="name" >
+                                        </div>
+                                        <div class="w-1/2">
+                                            <label for="">Email</label>
+                                            <input [(ngModel)]="user.email"  ngModel class="block border rounded-md w-full p-2" type="text" name="email" >
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-5 py-2">
+                                        <div class="w-1/2">
+                                            <label for="">Phone</label>
+                                            <input [(ngModel)]="user.phone" class="block border rounded-md w-full p-2" type="text" name="phone" >
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="mb-5">
+                                          <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
+                                          <input ngModel (change)="onFileSelected($event)" type="file" name="image" id="imageInput" accept="image/*" />
+                                          <img id="previewImage" src="http://localhost:3000/uploads/{{user.image}}" class="py-4" style=" max-width: 300px; max-height: 300px;" />
+                                        </div>
+                                      </div>
+                                      <input type="hidden" name="old_image"  [(ngModel)]="user.image" >
+                                      <input type="hidden" name="id" [(ngModel)]="user.id" >
+                                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                                </form>
+                                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script src="http://localhost:3000/js/admin/user/changeImg.js"></script>

@@ -1,0 +1,66 @@
+
+
+<div class="relative overflow-x-auto py-6">
+    <% if (successMessage.length != 0) { %>
+        <div class="px-6 py-4 border-green-500 bg-green-400 text-white">
+            <%= successMessage %>
+        </div>
+    <% } %>
+    <% if (errorMessage.length != 0) { %>
+        <div class="px-6 py-4 border-red-500 bg-red-400 text-white">
+            <%= errorMessage %>
+        </div>
+    <% } %>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                     name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    content
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    star
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let item of listComment){ %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <div class="flex gap-1 items-center">
+                        <img class="w-10 shadow-lg border" src="/uploads/<%= item.id_user.image %>" alt="">
+                        <%= item.id_user.name %>
+                    </div>
+                </th>
+                <td class="px-6 py-4">
+                    <%= item.content %>
+                </td>
+
+                
+                <td class="px-6 py-4">
+                    <%= item.star %>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<script>
+    function getStar(star) {
+        let html = ''
+        for (let i = 1; i <= star; i++) {
+            html+= '<i class="fa fa-star text-yellow-400" aria-hidden="true"></i>'
+        }
+        if (!Number.isInteger(star)&& star!=0){
+            html+= '<i class="fa fa-star-half-o text-yellow-400" aria-hidden="true"></i>'
+            star++
+        }
+        for (let i = star; i <5; i++) {
+            html += '<i class="fa fa-star-o text-yellow-400" aria-hidden="true"></i>'
+        }
+        return html
+    }
+</script>

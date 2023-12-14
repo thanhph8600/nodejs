@@ -1,0 +1,109 @@
+<main class="bg-gray-100">
+    <section >
+        <div  class="container m-auto py-8 ">
+            <div class="grid grid-rows-2 grid-flow-col gap-4">
+                <div class="row-span-2 col-span-2 ">
+                    <img class="w-full h-full" src="https://cdn0.fahasa.com/media/magentothem/banner7/CTTangQua_Banner_840x320.jpg" alt="">
+                </div>
+                <div class=" ">
+                    <img class="w-full h-full" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-12-2023/VNpayT12_392x156.png" alt="">
+                </div>
+                <div class=" ">
+                    <img class="w-full h-full" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-12-2023/SubBanner.png" alt="">
+                </div>
+            </div>
+            <div class="flex gap-2 pt-4 justify-between">
+                <div>
+                    <img class="w-full h-full" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-12-2023/HT%C4%90onHang_SBanner_310x210.png" alt="">
+                </div>
+                <div>
+                    <img class="w-full h-full" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-12-2023/TrangThieuNhiT923_Banner_SmallBanner_310x210_1.png" alt="">
+                </div>
+                <div>
+                    <img class="w-full h-full" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-12-2023/NoelCMST1123_SmallBanner_310x210PNG.png" alt="">
+                </div>
+                <div>
+                    <img class="w-full h-full" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-12-2023/DinhTi_T1223_KC_BannerSmallBanner_310x210.png" alt="">
+                </div>
+            </div>  
+        </div>
+        
+    </section>
+
+    <section>
+        <div class="" style="background-image: url('https://cdn0.fahasa.com/media/fahasa_web_image/flash_sale_background_image.jpg');">
+            <div class="container m-auto py-8">
+                <div class=" bg-white py-4 rounded-md flex gap-4 px-5 justify-between">
+                    <div class=" flex gap-4">
+                        <img src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/flashsale/label-flashsale.svg?q=" alt="">
+                        <div class="flex items-center">
+                            <p>Sự kiện kết thúc trong ngày</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 grid grid-cols-5 gap-2 ">
+                    <a href="detai-product?isbn={{item.isbn}}" *ngFor="let item of sale">
+                        <div  class="bg-white rounded-md py-2 px-4 flex flex-col gap-2 h-full">
+                            <div class="flex-none">
+                                <img class="w-4/5 m-auto" src="http://localhost:3000/uploads/{{item.image}}" alt="">
+                            </div>
+                            <p class="grow"> {{item.name}} </p>
+                            <p class="flex-none text-red-500 font-bold">
+                                {{item.price*((100-item.sale)/100)}} đ <span class="px-2 rounded text-white bg-red-600">{{item.sale}}%</span>
+                            </p>
+                            <p class="line-through text-gray-600 flex-none">{{item.price}} đ</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container m-auto  pt-8 pb-4">
+            <div class=" px-2 py-4 bg-white rounded-md">
+                <div class="py-2 border-b flex gap-3 px-4">
+                    <span class="p-4" style="background: url('https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_menu_red.svg');"></span>
+                    <h2 class="font-bold text-lg">Danh mục sản phẩm</h2>
+                </div>
+                <div class=" flex gap-2">
+                    <div *ngFor="let item of categories" class="p-4 ">
+                        <a href="list-product?query=category&&id={{item._id}}" class="flex justify-center items-center flex-col">
+                            <div>
+                                <img src="http://localhost:3000/uploads/{{item.image}}" alt="">
+                            </div>
+                            <p>{{item.name}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container m-auto py-4">
+            <div class=" bg-white rounded-md pb-4">
+                <div class="py-4 bg border-b  rounded-t-md flex gap-3 px-4 bg-gradient-to-r bg-rose-200">
+                    <img src="https://cdn0.fahasa.com/skin/frontend/base/default/images/ico_dealhot.png" alt="">
+                    <h2 class="font-bold text-lg">Xu Hướng Mua Sắm</h2>
+                </div>
+                <div class="grid grid-cols-5 px-4 py-2 gap-2">
+                    <a *ngFor="let item of products" href="detai-product?isbn={{item.isbn}}" class="hover:shadow-lg hover:border">
+                        <div class="px-4 py-2 h-full">
+                            <div class="bg-white rounded-md py-2 px-4 flex flex-col h-full">
+                                <div class="flex-none">
+                                    <img class="w-4/5 m-auto" src="http://localhost:3000/uploads/{{item.image}}" alt="">
+                                </div>
+                                <p class="grow"> {{item.name}} </p>
+                                <p class="flex-none text-red-500 font-bold">
+                                    {{item.price*((100-item.sale)/100)}} đ <span class="px-2 rounded text-white bg-red-600">{{item.sale}}%</span>
+                                </p>
+                                <p class="line-through text-gray-600 flex-none">{{item.price}} đ</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

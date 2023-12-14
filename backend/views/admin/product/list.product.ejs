@@ -1,0 +1,73 @@
+
+
+<div class="relative overflow-x-auto py-6">
+    <% if (successMessage.length != 0) { %>
+        <div class="px-6 py-4 border-green-500 bg-green-400 text-white">
+            <%= successMessage %>
+        </div>
+    <% } %>
+    <% if (errorMessage.length != 0) { %>
+        <div class="px-6 py-4 border-red-500 bg-red-400 text-white">
+            <%= errorMessage %>
+        </div>
+    <% } %>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                     name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                     price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                     author
+                </th>
+
+                <th scope="col" class="px-6 py-3">
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <a class=" px-5 py-2 rounded-md border hover:bg-gray-300" href="/admin/product/create">ADD Product</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let item of listProduct){ %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <div class="flex gap-1 items-center">
+                        <img class="w-10 shadow-lg border" src="/uploads/<%= item.image %>" alt="">
+                        <%= item.name %>
+                    </div>
+                </th>
+                <td class="px-6 py-4">
+                    <%= item.price %>
+                </td>
+                <td class="px-6 py-4">
+                    <%= item.author %>
+                </td>
+
+                <td class="px-6 py-4">
+                    <form action="/admin/product/update" method="get">
+                        <input type="hidden" name="id" value="<%= item._id%>">
+                        <button><i class="fa fa-wrench hover:text-green-600" aria-hidden="true"></i></button>
+                    </form>
+                </td>
+                <td class="px-6 py-4">
+                    <i id="<%= item._id%>" name="<%= item.name%>" class="fa fa-trash hover:text-red-600 cursor-pointer delete" aria-hidden="true"></i>
+
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<%- include('../components/popup.ejs',{table: 'product' })%>
+
+<script>
+    $(document).on('click','.delete',function(){
+        $('.popup').removeClass('hidden')
+        $('.name').html($(this).attr('name'))
+        $('input[name="id"]').val($(this).attr('id'))
+    })
+</script>
